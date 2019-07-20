@@ -1,112 +1,6 @@
 /******/ (function(modules) { // webpackBootstrap
-/******/ 	// install a JSONP callback for chunk loading
-/******/ 	function webpackJsonpCallback(data) {
-/******/ 		var chunkIds = data[0];
-/******/ 		var moreModules = data[1];
-/******/
-/******/
-/******/ 		// add "moreModules" to the modules object,
-/******/ 		// then flag all "chunkIds" as loaded and fire callback
-/******/ 		var moduleId, chunkId, i = 0, resolves = [];
-/******/ 		for(;i < chunkIds.length; i++) {
-/******/ 			chunkId = chunkIds[i];
-/******/ 			if(installedChunks[chunkId]) {
-/******/ 				resolves.push(installedChunks[chunkId][0]);
-/******/ 			}
-/******/ 			installedChunks[chunkId] = 0;
-/******/ 		}
-/******/ 		for(moduleId in moreModules) {
-/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
-/******/ 				modules[moduleId] = moreModules[moduleId];
-/******/ 			}
-/******/ 		}
-/******/ 		if(parentJsonpFunction) parentJsonpFunction(data);
-/******/
-/******/ 		while(resolves.length) {
-/******/ 			resolves.shift()();
-/******/ 		}
-/******/
-/******/ 	};
-/******/
-/******/
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-/******/
-/******/ 	// object to store loaded and loading chunks
-/******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 	// Promise = chunk loading, 0 = chunk loaded
-/******/ 	var installedChunks = {
-/******/ 		"main": 0
-/******/ 	};
-/******/
-/******/
-/******/
-/******/ 	// script path function
-/******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + chunkId + ".index.js"
-/******/ 	}
-/******/
-/******/ 	// object to store loaded and loading wasm modules
-/******/ 	var installedWasmModules = {};
-/******/
-/******/ 	function promiseResolve() { return Promise.resolve(); }
-/******/
-/******/ 	var wasmImportObjects = {
-/******/ 		"./pkg/canvas_bg.wasm": function() {
-/******/ 			return {
-/******/ 				"./canvas.js": {
-/******/ 					"__wbindgen_object_drop_ref": function(p0i32) {
-/******/ 						return installedModules["./pkg/canvas.js"].exports["__wbindgen_object_drop_ref"](p0i32);
-/******/ 					},
-/******/ 					"__widl_instanceof_CanvasRenderingContext2D": function(p0i32) {
-/******/ 						return installedModules["./pkg/canvas.js"].exports["__widl_instanceof_CanvasRenderingContext2D"](p0i32);
-/******/ 					},
-/******/ 					"__widl_f_begin_path_CanvasRenderingContext2D": function(p0i32) {
-/******/ 						return installedModules["./pkg/canvas.js"].exports["__widl_f_begin_path_CanvasRenderingContext2D"](p0i32);
-/******/ 					},
-/******/ 					"__widl_f_stroke_CanvasRenderingContext2D": function(p0i32) {
-/******/ 						return installedModules["./pkg/canvas.js"].exports["__widl_f_stroke_CanvasRenderingContext2D"](p0i32);
-/******/ 					},
-/******/ 					"__widl_f_arc_CanvasRenderingContext2D": function(p0i32,p1f64,p2f64,p3f64,p4f64,p5f64) {
-/******/ 						return installedModules["./pkg/canvas.js"].exports["__widl_f_arc_CanvasRenderingContext2D"](p0i32,p1f64,p2f64,p3f64,p4f64,p5f64);
-/******/ 					},
-/******/ 					"__widl_f_move_to_CanvasRenderingContext2D": function(p0i32,p1f64,p2f64) {
-/******/ 						return installedModules["./pkg/canvas.js"].exports["__widl_f_move_to_CanvasRenderingContext2D"](p0i32,p1f64,p2f64);
-/******/ 					},
-/******/ 					"__widl_f_get_element_by_id_Document": function(p0i32,p1i32,p2i32) {
-/******/ 						return installedModules["./pkg/canvas.js"].exports["__widl_f_get_element_by_id_Document"](p0i32,p1i32,p2i32);
-/******/ 					},
-/******/ 					"__widl_instanceof_HTMLCanvasElement": function(p0i32) {
-/******/ 						return installedModules["./pkg/canvas.js"].exports["__widl_instanceof_HTMLCanvasElement"](p0i32);
-/******/ 					},
-/******/ 					"__widl_f_get_context_HTMLCanvasElement": function(p0i32,p1i32,p2i32) {
-/******/ 						return installedModules["./pkg/canvas.js"].exports["__widl_f_get_context_HTMLCanvasElement"](p0i32,p1i32,p2i32);
-/******/ 					},
-/******/ 					"__widl_instanceof_Window": function(p0i32) {
-/******/ 						return installedModules["./pkg/canvas.js"].exports["__widl_instanceof_Window"](p0i32);
-/******/ 					},
-/******/ 					"__widl_f_document_Window": function(p0i32) {
-/******/ 						return installedModules["./pkg/canvas.js"].exports["__widl_f_document_Window"](p0i32);
-/******/ 					},
-/******/ 					"__wbg_newnoargs_8d1797b163dbc9fb": function(p0i32,p1i32) {
-/******/ 						return installedModules["./pkg/canvas.js"].exports["__wbg_newnoargs_8d1797b163dbc9fb"](p0i32,p1i32);
-/******/ 					},
-/******/ 					"__wbg_call_836fa928f74337e5": function(p0i32,p1i32) {
-/******/ 						return installedModules["./pkg/canvas.js"].exports["__wbg_call_836fa928f74337e5"](p0i32,p1i32);
-/******/ 					},
-/******/ 					"__wbindgen_object_clone_ref": function(p0i32) {
-/******/ 						return installedModules["./pkg/canvas.js"].exports["__wbindgen_object_clone_ref"](p0i32);
-/******/ 					},
-/******/ 					"__wbindgen_debug_string": function(p0i32,p1i32) {
-/******/ 						return installedModules["./pkg/canvas.js"].exports["__wbindgen_debug_string"](p0i32,p1i32);
-/******/ 					},
-/******/ 					"__wbindgen_throw": function(p0i32,p1i32) {
-/******/ 						return installedModules["./pkg/canvas.js"].exports["__wbindgen_throw"](p0i32,p1i32);
-/******/ 					}
-/******/ 				}
-/******/ 			};
-/******/ 		},
-/******/ 	};
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -132,96 +26,6 @@
 /******/ 		return module.exports;
 /******/ 	}
 /******/
-/******/ 	// This file contains only the entry chunk.
-/******/ 	// The chunk loading function for additional chunks
-/******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
-/******/ 		var promises = [];
-/******/
-/******/
-/******/ 		// JSONP chunk loading for javascript
-/******/
-/******/ 		var installedChunkData = installedChunks[chunkId];
-/******/ 		if(installedChunkData !== 0) { // 0 means "already installed".
-/******/
-/******/ 			// a Promise means "currently loading".
-/******/ 			if(installedChunkData) {
-/******/ 				promises.push(installedChunkData[2]);
-/******/ 			} else {
-/******/ 				// setup Promise in chunk cache
-/******/ 				var promise = new Promise(function(resolve, reject) {
-/******/ 					installedChunkData = installedChunks[chunkId] = [resolve, reject];
-/******/ 				});
-/******/ 				promises.push(installedChunkData[2] = promise);
-/******/
-/******/ 				// start chunk loading
-/******/ 				var script = document.createElement('script');
-/******/ 				var onScriptComplete;
-/******/
-/******/ 				script.charset = 'utf-8';
-/******/ 				script.timeout = 120;
-/******/ 				if (__webpack_require__.nc) {
-/******/ 					script.setAttribute("nonce", __webpack_require__.nc);
-/******/ 				}
-/******/ 				script.src = jsonpScriptSrc(chunkId);
-/******/
-/******/ 				onScriptComplete = function (event) {
-/******/ 					// avoid mem leaks in IE.
-/******/ 					script.onerror = script.onload = null;
-/******/ 					clearTimeout(timeout);
-/******/ 					var chunk = installedChunks[chunkId];
-/******/ 					if(chunk !== 0) {
-/******/ 						if(chunk) {
-/******/ 							var errorType = event && (event.type === 'load' ? 'missing' : event.type);
-/******/ 							var realSrc = event && event.target && event.target.src;
-/******/ 							var error = new Error('Loading chunk ' + chunkId + ' failed.\n(' + errorType + ': ' + realSrc + ')');
-/******/ 							error.type = errorType;
-/******/ 							error.request = realSrc;
-/******/ 							chunk[1](error);
-/******/ 						}
-/******/ 						installedChunks[chunkId] = undefined;
-/******/ 					}
-/******/ 				};
-/******/ 				var timeout = setTimeout(function(){
-/******/ 					onScriptComplete({ type: 'timeout', target: script });
-/******/ 				}, 120000);
-/******/ 				script.onerror = script.onload = onScriptComplete;
-/******/ 				document.head.appendChild(script);
-/******/ 			}
-/******/ 		}
-/******/
-/******/ 		// Fetch + compile chunk loading for webassembly
-/******/
-/******/ 		var wasmModules = {"1":["./pkg/canvas_bg.wasm"]}[chunkId] || [];
-/******/
-/******/ 		wasmModules.forEach(function(wasmModuleId) {
-/******/ 			var installedWasmModuleData = installedWasmModules[wasmModuleId];
-/******/
-/******/ 			// a Promise means "currently loading" or "already loaded".
-/******/ 			if(installedWasmModuleData)
-/******/ 				promises.push(installedWasmModuleData);
-/******/ 			else {
-/******/ 				var importObject = wasmImportObjects[wasmModuleId]();
-/******/ 				var req = fetch(__webpack_require__.p + "" + {"./pkg/canvas_bg.wasm":"49ba326fcc4c56f1e58f"}[wasmModuleId] + ".module.wasm");
-/******/ 				var promise;
-/******/ 				if(importObject instanceof Promise && typeof WebAssembly.compileStreaming === 'function') {
-/******/ 					promise = Promise.all([WebAssembly.compileStreaming(req), importObject]).then(function(items) {
-/******/ 						return WebAssembly.instantiate(items[0], items[1]);
-/******/ 					});
-/******/ 				} else if(typeof WebAssembly.instantiateStreaming === 'function') {
-/******/ 					promise = WebAssembly.instantiateStreaming(req, importObject);
-/******/ 				} else {
-/******/ 					var bytesPromise = req.then(function(x) { return x.arrayBuffer(); });
-/******/ 					promise = bytesPromise.then(function(bytes) {
-/******/ 						return WebAssembly.instantiate(bytes, importObject);
-/******/ 					});
-/******/ 				}
-/******/ 				promises.push(installedWasmModules[wasmModuleId] = promise.then(function(res) {
-/******/ 					return __webpack_require__.w[wasmModuleId] = (res.instance || res).exports;
-/******/ 				}));
-/******/ 			}
-/******/ 		});
-/******/ 		return Promise.all(promises);
-/******/ 	};
 /******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
@@ -275,34 +79,21 @@
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
-/******/ 	// on error function for async loading
-/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
-/******/
-/******/ 	// object with all WebAssembly.instance exports
-/******/ 	__webpack_require__.w = {};
-/******/
-/******/ 	var jsonpArray = window["webpackJsonp"] = window["webpackJsonp"] || [];
-/******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
-/******/ 	jsonpArray.push = webpackJsonpCallback;
-/******/ 	jsonpArray = jsonpArray.slice();
-/******/ 	for(var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);
-/******/ 	var parentJsonpFunction = oldJsonpFunction;
-/******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./dist/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./index.js":
-/*!******************!*\
-  !*** ./index.js ***!
-  \******************/
+/***/ "./dist/index.js":
+/*!***********************!*\
+  !*** ./dist/index.js ***!
+  \***********************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-eval("// For more comments about what's going on here, check out the `hello_world`\n// example.\nPromise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./pkg/canvas */ \"./pkg/canvas.js\"))\n  .catch(console.error);\n\n\n//# sourceURL=webpack:///./index.js?");
+eval("/******/ (function(modules) { // webpackBootstrap\n/******/ \t// install a JSONP callback for chunk loading\n/******/ \tfunction webpackJsonpCallback(data) {\n/******/ \t\tvar chunkIds = data[0];\n/******/ \t\tvar moreModules = data[1];\n/******/\n/******/\n/******/ \t\t// add \"moreModules\" to the modules object,\n/******/ \t\t// then flag all \"chunkIds\" as loaded and fire callback\n/******/ \t\tvar moduleId, chunkId, i = 0, resolves = [];\n/******/ \t\tfor(;i < chunkIds.length; i++) {\n/******/ \t\t\tchunkId = chunkIds[i];\n/******/ \t\t\tif(installedChunks[chunkId]) {\n/******/ \t\t\t\tresolves.push(installedChunks[chunkId][0]);\n/******/ \t\t\t}\n/******/ \t\t\tinstalledChunks[chunkId] = 0;\n/******/ \t\t}\n/******/ \t\tfor(moduleId in moreModules) {\n/******/ \t\t\tif(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {\n/******/ \t\t\t\tmodules[moduleId] = moreModules[moduleId];\n/******/ \t\t\t}\n/******/ \t\t}\n/******/ \t\tif(parentJsonpFunction) parentJsonpFunction(data);\n/******/\n/******/ \t\twhile(resolves.length) {\n/******/ \t\t\tresolves.shift()();\n/******/ \t\t}\n/******/\n/******/ \t};\n/******/\n/******/\n/******/ \t// The module cache\n/******/ \tvar installedModules = {};\n/******/\n/******/ \t// object to store loaded and loading chunks\n/******/ \t// undefined = chunk not loaded, null = chunk preloaded/prefetched\n/******/ \t// Promise = chunk loading, 0 = chunk loaded\n/******/ \tvar installedChunks = {\n/******/ \t\t\"main\": 0\n/******/ \t};\n/******/\n/******/\n/******/\n/******/ \t// script path function\n/******/ \tfunction jsonpScriptSrc(chunkId) {\n/******/ \t\treturn __webpack_require__.p + \"\" + chunkId + \".index.js\"\n/******/ \t}\n/******/\n/******/ \t// object to store loaded and loading wasm modules\n/******/ \tvar installedWasmModules = {};\n/******/\n/******/ \tfunction promiseResolve() { return Promise.resolve(); }\n/******/\n/******/ \tvar wasmImportObjects = {\n/******/ \t\t\"./pkg/canvas_bg.wasm\": function() {\n/******/ \t\t\treturn {\n/******/ \t\t\t\t\"./canvas.js\": {\n/******/ \t\t\t\t\t\"__wbindgen_object_drop_ref\": function(p0i32) {\n/******/ \t\t\t\t\t\treturn installedModules[\"./pkg/canvas.js\"].exports[\"__wbindgen_object_drop_ref\"](p0i32);\n/******/ \t\t\t\t\t},\n/******/ \t\t\t\t\t\"__widl_instanceof_CanvasRenderingContext2D\": function(p0i32) {\n/******/ \t\t\t\t\t\treturn installedModules[\"./pkg/canvas.js\"].exports[\"__widl_instanceof_CanvasRenderingContext2D\"](p0i32);\n/******/ \t\t\t\t\t},\n/******/ \t\t\t\t\t\"__widl_f_begin_path_CanvasRenderingContext2D\": function(p0i32) {\n/******/ \t\t\t\t\t\treturn installedModules[\"./pkg/canvas.js\"].exports[\"__widl_f_begin_path_CanvasRenderingContext2D\"](p0i32);\n/******/ \t\t\t\t\t},\n/******/ \t\t\t\t\t\"__widl_f_stroke_CanvasRenderingContext2D\": function(p0i32) {\n/******/ \t\t\t\t\t\treturn installedModules[\"./pkg/canvas.js\"].exports[\"__widl_f_stroke_CanvasRenderingContext2D\"](p0i32);\n/******/ \t\t\t\t\t},\n/******/ \t\t\t\t\t\"__widl_f_arc_CanvasRenderingContext2D\": function(p0i32,p1f64,p2f64,p3f64,p4f64,p5f64) {\n/******/ \t\t\t\t\t\treturn installedModules[\"./pkg/canvas.js\"].exports[\"__widl_f_arc_CanvasRenderingContext2D\"](p0i32,p1f64,p2f64,p3f64,p4f64,p5f64);\n/******/ \t\t\t\t\t},\n/******/ \t\t\t\t\t\"__widl_f_move_to_CanvasRenderingContext2D\": function(p0i32,p1f64,p2f64) {\n/******/ \t\t\t\t\t\treturn installedModules[\"./pkg/canvas.js\"].exports[\"__widl_f_move_to_CanvasRenderingContext2D\"](p0i32,p1f64,p2f64);\n/******/ \t\t\t\t\t},\n/******/ \t\t\t\t\t\"__widl_f_get_element_by_id_Document\": function(p0i32,p1i32,p2i32) {\n/******/ \t\t\t\t\t\treturn installedModules[\"./pkg/canvas.js\"].exports[\"__widl_f_get_element_by_id_Document\"](p0i32,p1i32,p2i32);\n/******/ \t\t\t\t\t},\n/******/ \t\t\t\t\t\"__widl_instanceof_HTMLCanvasElement\": function(p0i32) {\n/******/ \t\t\t\t\t\treturn installedModules[\"./pkg/canvas.js\"].exports[\"__widl_instanceof_HTMLCanvasElement\"](p0i32);\n/******/ \t\t\t\t\t},\n/******/ \t\t\t\t\t\"__widl_f_get_context_HTMLCanvasElement\": function(p0i32,p1i32,p2i32) {\n/******/ \t\t\t\t\t\treturn installedModules[\"./pkg/canvas.js\"].exports[\"__widl_f_get_context_HTMLCanvasElement\"](p0i32,p1i32,p2i32);\n/******/ \t\t\t\t\t},\n/******/ \t\t\t\t\t\"__widl_instanceof_Window\": function(p0i32) {\n/******/ \t\t\t\t\t\treturn installedModules[\"./pkg/canvas.js\"].exports[\"__widl_instanceof_Window\"](p0i32);\n/******/ \t\t\t\t\t},\n/******/ \t\t\t\t\t\"__widl_f_document_Window\": function(p0i32) {\n/******/ \t\t\t\t\t\treturn installedModules[\"./pkg/canvas.js\"].exports[\"__widl_f_document_Window\"](p0i32);\n/******/ \t\t\t\t\t},\n/******/ \t\t\t\t\t\"__wbg_newnoargs_8d1797b163dbc9fb\": function(p0i32,p1i32) {\n/******/ \t\t\t\t\t\treturn installedModules[\"./pkg/canvas.js\"].exports[\"__wbg_newnoargs_8d1797b163dbc9fb\"](p0i32,p1i32);\n/******/ \t\t\t\t\t},\n/******/ \t\t\t\t\t\"__wbg_call_836fa928f74337e5\": function(p0i32,p1i32) {\n/******/ \t\t\t\t\t\treturn installedModules[\"./pkg/canvas.js\"].exports[\"__wbg_call_836fa928f74337e5\"](p0i32,p1i32);\n/******/ \t\t\t\t\t},\n/******/ \t\t\t\t\t\"__wbindgen_object_clone_ref\": function(p0i32) {\n/******/ \t\t\t\t\t\treturn installedModules[\"./pkg/canvas.js\"].exports[\"__wbindgen_object_clone_ref\"](p0i32);\n/******/ \t\t\t\t\t},\n/******/ \t\t\t\t\t\"__wbindgen_debug_string\": function(p0i32,p1i32) {\n/******/ \t\t\t\t\t\treturn installedModules[\"./pkg/canvas.js\"].exports[\"__wbindgen_debug_string\"](p0i32,p1i32);\n/******/ \t\t\t\t\t},\n/******/ \t\t\t\t\t\"__wbindgen_throw\": function(p0i32,p1i32) {\n/******/ \t\t\t\t\t\treturn installedModules[\"./pkg/canvas.js\"].exports[\"__wbindgen_throw\"](p0i32,p1i32);\n/******/ \t\t\t\t\t}\n/******/ \t\t\t\t}\n/******/ \t\t\t};\n/******/ \t\t},\n/******/ \t};\n/******/\n/******/ \t// The require function\n/******/ \tfunction __webpack_require__(moduleId) {\n/******/\n/******/ \t\t// Check if module is in cache\n/******/ \t\tif(installedModules[moduleId]) {\n/******/ \t\t\treturn installedModules[moduleId].exports;\n/******/ \t\t}\n/******/ \t\t// Create a new module (and put it into the cache)\n/******/ \t\tvar module = installedModules[moduleId] = {\n/******/ \t\t\ti: moduleId,\n/******/ \t\t\tl: false,\n/******/ \t\t\texports: {}\n/******/ \t\t};\n/******/\n/******/ \t\t// Execute the module function\n/******/ \t\tmodules[moduleId].call(module.exports, module, module.exports, __webpack_require__);\n/******/\n/******/ \t\t// Flag the module as loaded\n/******/ \t\tmodule.l = true;\n/******/\n/******/ \t\t// Return the exports of the module\n/******/ \t\treturn module.exports;\n/******/ \t}\n/******/\n/******/ \t// This file contains only the entry chunk.\n/******/ \t// The chunk loading function for additional chunks\n/******/ \t__webpack_require__.e = function requireEnsure(chunkId) {\n/******/ \t\tvar promises = [];\n/******/\n/******/\n/******/ \t\t// JSONP chunk loading for javascript\n/******/\n/******/ \t\tvar installedChunkData = installedChunks[chunkId];\n/******/ \t\tif(installedChunkData !== 0) { // 0 means \"already installed\".\n/******/\n/******/ \t\t\t// a Promise means \"currently loading\".\n/******/ \t\t\tif(installedChunkData) {\n/******/ \t\t\t\tpromises.push(installedChunkData[2]);\n/******/ \t\t\t} else {\n/******/ \t\t\t\t// setup Promise in chunk cache\n/******/ \t\t\t\tvar promise = new Promise(function(resolve, reject) {\n/******/ \t\t\t\t\tinstalledChunkData = installedChunks[chunkId] = [resolve, reject];\n/******/ \t\t\t\t});\n/******/ \t\t\t\tpromises.push(installedChunkData[2] = promise);\n/******/\n/******/ \t\t\t\t// start chunk loading\n/******/ \t\t\t\tvar script = document.createElement('script');\n/******/ \t\t\t\tvar onScriptComplete;\n/******/\n/******/ \t\t\t\tscript.charset = 'utf-8';\n/******/ \t\t\t\tscript.timeout = 120;\n/******/ \t\t\t\tif (__webpack_require__.nc) {\n/******/ \t\t\t\t\tscript.setAttribute(\"nonce\", __webpack_require__.nc);\n/******/ \t\t\t\t}\n/******/ \t\t\t\tscript.src = jsonpScriptSrc(chunkId);\n/******/\n/******/ \t\t\t\tonScriptComplete = function (event) {\n/******/ \t\t\t\t\t// avoid mem leaks in IE.\n/******/ \t\t\t\t\tscript.onerror = script.onload = null;\n/******/ \t\t\t\t\tclearTimeout(timeout);\n/******/ \t\t\t\t\tvar chunk = installedChunks[chunkId];\n/******/ \t\t\t\t\tif(chunk !== 0) {\n/******/ \t\t\t\t\t\tif(chunk) {\n/******/ \t\t\t\t\t\t\tvar errorType = event && (event.type === 'load' ? 'missing' : event.type);\n/******/ \t\t\t\t\t\t\tvar realSrc = event && event.target && event.target.src;\n/******/ \t\t\t\t\t\t\tvar error = new Error('Loading chunk ' + chunkId + ' failed.\\n(' + errorType + ': ' + realSrc + ')');\n/******/ \t\t\t\t\t\t\terror.type = errorType;\n/******/ \t\t\t\t\t\t\terror.request = realSrc;\n/******/ \t\t\t\t\t\t\tchunk[1](error);\n/******/ \t\t\t\t\t\t}\n/******/ \t\t\t\t\t\tinstalledChunks[chunkId] = undefined;\n/******/ \t\t\t\t\t}\n/******/ \t\t\t\t};\n/******/ \t\t\t\tvar timeout = setTimeout(function(){\n/******/ \t\t\t\t\tonScriptComplete({ type: 'timeout', target: script });\n/******/ \t\t\t\t}, 120000);\n/******/ \t\t\t\tscript.onerror = script.onload = onScriptComplete;\n/******/ \t\t\t\tdocument.head.appendChild(script);\n/******/ \t\t\t}\n/******/ \t\t}\n/******/\n/******/ \t\t// Fetch + compile chunk loading for webassembly\n/******/\n/******/ \t\tvar wasmModules = {\"1\":[\"./pkg/canvas_bg.wasm\"]}[chunkId] || [];\n/******/\n/******/ \t\twasmModules.forEach(function(wasmModuleId) {\n/******/ \t\t\tvar installedWasmModuleData = installedWasmModules[wasmModuleId];\n/******/\n/******/ \t\t\t// a Promise means \"currently loading\" or \"already loaded\".\n/******/ \t\t\tif(installedWasmModuleData)\n/******/ \t\t\t\tpromises.push(installedWasmModuleData);\n/******/ \t\t\telse {\n/******/ \t\t\t\tvar importObject = wasmImportObjects[wasmModuleId]();\n/******/ \t\t\t\tvar req = fetch(__webpack_require__.p + \"\" + {\"./pkg/canvas_bg.wasm\":\"49ba326fcc4c56f1e58f\"}[wasmModuleId] + \".module.wasm\");\n/******/ \t\t\t\tvar promise;\n/******/ \t\t\t\tif(importObject instanceof Promise && typeof WebAssembly.compileStreaming === 'function') {\n/******/ \t\t\t\t\tpromise = Promise.all([WebAssembly.compileStreaming(req), importObject]).then(function(items) {\n/******/ \t\t\t\t\t\treturn WebAssembly.instantiate(items[0], items[1]);\n/******/ \t\t\t\t\t});\n/******/ \t\t\t\t} else if(typeof WebAssembly.instantiateStreaming === 'function') {\n/******/ \t\t\t\t\tpromise = WebAssembly.instantiateStreaming(req, importObject);\n/******/ \t\t\t\t} else {\n/******/ \t\t\t\t\tvar bytesPromise = req.then(function(x) { return x.arrayBuffer(); });\n/******/ \t\t\t\t\tpromise = bytesPromise.then(function(bytes) {\n/******/ \t\t\t\t\t\treturn WebAssembly.instantiate(bytes, importObject);\n/******/ \t\t\t\t\t});\n/******/ \t\t\t\t}\n/******/ \t\t\t\tpromises.push(installedWasmModules[wasmModuleId] = promise.then(function(res) {\n/******/ \t\t\t\t\treturn __webpack_require__.w[wasmModuleId] = (res.instance || res).exports;\n/******/ \t\t\t\t}));\n/******/ \t\t\t}\n/******/ \t\t});\n/******/ \t\treturn Promise.all(promises);\n/******/ \t};\n/******/\n/******/ \t// expose the modules object (__webpack_modules__)\n/******/ \t__webpack_require__.m = modules;\n/******/\n/******/ \t// expose the module cache\n/******/ \t__webpack_require__.c = installedModules;\n/******/\n/******/ \t// define getter function for harmony exports\n/******/ \t__webpack_require__.d = function(exports, name, getter) {\n/******/ \t\tif(!__webpack_require__.o(exports, name)) {\n/******/ \t\t\tObject.defineProperty(exports, name, { enumerable: true, get: getter });\n/******/ \t\t}\n/******/ \t};\n/******/\n/******/ \t// define __esModule on exports\n/******/ \t__webpack_require__.r = function(exports) {\n/******/ \t\tif(typeof Symbol !== 'undefined' && Symbol.toStringTag) {\n/******/ \t\t\tObject.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });\n/******/ \t\t}\n/******/ \t\tObject.defineProperty(exports, '__esModule', { value: true });\n/******/ \t};\n/******/\n/******/ \t// create a fake namespace object\n/******/ \t// mode & 1: value is a module id, require it\n/******/ \t// mode & 2: merge all properties of value into the ns\n/******/ \t// mode & 4: return value when already ns object\n/******/ \t// mode & 8|1: behave like require\n/******/ \t__webpack_require__.t = function(value, mode) {\n/******/ \t\tif(mode & 1) value = __webpack_require__(value);\n/******/ \t\tif(mode & 8) return value;\n/******/ \t\tif((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;\n/******/ \t\tvar ns = Object.create(null);\n/******/ \t\t__webpack_require__.r(ns);\n/******/ \t\tObject.defineProperty(ns, 'default', { enumerable: true, value: value });\n/******/ \t\tif(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));\n/******/ \t\treturn ns;\n/******/ \t};\n/******/\n/******/ \t// getDefaultExport function for compatibility with non-harmony modules\n/******/ \t__webpack_require__.n = function(module) {\n/******/ \t\tvar getter = module && module.__esModule ?\n/******/ \t\t\tfunction getDefault() { return module['default']; } :\n/******/ \t\t\tfunction getModuleExports() { return module; };\n/******/ \t\t__webpack_require__.d(getter, 'a', getter);\n/******/ \t\treturn getter;\n/******/ \t};\n/******/\n/******/ \t// Object.prototype.hasOwnProperty.call\n/******/ \t__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };\n/******/\n/******/ \t// __webpack_public_path__\n/******/ \t__webpack_require__.p = \"\";\n/******/\n/******/ \t// on error function for async loading\n/******/ \t__webpack_require__.oe = function(err) { console.error(err); throw err; };\n/******/\n/******/ \t// object with all WebAssembly.instance exports\n/******/ \t__webpack_require__.w = {};\n/******/\n/******/ \tvar jsonpArray = window[\"webpackJsonp\"] = window[\"webpackJsonp\"] || [];\n/******/ \tvar oldJsonpFunction = jsonpArray.push.bind(jsonpArray);\n/******/ \tjsonpArray.push = webpackJsonpCallback;\n/******/ \tjsonpArray = jsonpArray.slice();\n/******/ \tfor(var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);\n/******/ \tvar parentJsonpFunction = oldJsonpFunction;\n/******/\n/******/\n/******/ \t// Load entry module and return exports\n/******/ \treturn __webpack_require__(__webpack_require__.s = \"./index.js\");\n/******/ })\n/************************************************************************/\n/******/ ({\n\n/***/ \"./index.js\":\n/*!******************!*\\\n  !*** ./index.js ***!\n  \\******************/\n/*! no static exports found */\n/***/ (function(module, exports, __webpack_require__) {\n\neval(\"// For more comments about what's going on here, check out the `hello_world`\\n// example.\\nPromise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./pkg/canvas */ \\\"./pkg/canvas.js\\\"))\\n  .catch(console.error);\\n\\n\\n//# sourceURL=webpack:///./index.js?\");\n\n/***/ })\n\n/******/ });\n\n//# sourceURL=webpack:///./dist/index.js?");
 
 /***/ })
 
